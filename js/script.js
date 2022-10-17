@@ -50,36 +50,38 @@ function generateSquare(){
  * Description: Funzione che genera la griglia di quadrati
  */
 function generateGrid(){
-    count++;
-
-    if(count <= 1){
-        const userDifficultyChoice = parseInt(userDifficulty.value);
-    
-        // Genero un array di numeri
-        let arrayNumbers = generateNumbersArray(userDifficultyChoice);
-    
-        // Generiamo la griglia
-        for(let i = 0; i < arrayNumbers.length ; i++){
-            const item = generateSquare();
-    
-            if(userDifficultyChoice === 49){
-                item.classList.add("hard");
-            } else if(userDifficultyChoice === 81){
-                item.classList.add("medium");
-            } else {
-                item.classList.add("easy");
-            }
-    
-            item.innerHTML = arrayNumbers[i];
-            
-            item.addEventListener("click", function(){
-                item.classList.add("active");
-                console.log(item.innerHTML);
-            })
-    
-            gridSquare.append(item);
-        }
-    } else {
-        alert("Hai già giocato, ricarica la pagina e rigioca!");
+    if(count > 0 ){
+        gridSquare.innerHTML = "";
+        count = 0;
     }
+
+    const userDifficultyChoice = parseInt(userDifficulty.value);
+
+    // Genero un array di numeri
+    let arrayNumbers = generateNumbersArray(userDifficultyChoice);
+
+    // Generiamo la griglia
+    for(let i = 0; i < arrayNumbers.length ; i++){
+        const item = generateSquare();
+
+        if(userDifficultyChoice === 49){
+            item.classList.add("hard");
+        } else if(userDifficultyChoice === 81){
+            item.classList.add("medium");
+        } else {
+            item.classList.add("easy");
+        }
+
+        item.innerHTML = arrayNumbers[i];
+        
+        item.addEventListener("click", function(){
+            item.classList.add("active");
+            console.log(item.innerHTML);
+        })
+
+        gridSquare.append(item);
+    }
+
+    count++;
+    
 }
