@@ -7,10 +7,7 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 
 const btnPlay = document.getElementById("btn-play");
 const gridSquare = document.querySelector(".grid");
-
-// Genero un array di numeri
-let arrayNumbers = [];
-arrayNumbers = generateNumbersArray(100);
+const userDifficulty = document.getElementById("difficulty");
 
 // Al click dell bottone generiamo la griglia
 btnPlay.addEventListener("click", generateGrid);
@@ -43,7 +40,7 @@ function generateNumbersArray(arrayLength){
 function generateSquare(){
     const generateSquare = document.createElement("div");
     generateSquare.classList.add("square");
-    
+
     return generateSquare;
 }
 
@@ -52,9 +49,23 @@ function generateSquare(){
  * Description: Funzione che genera la griglia di quadrati
  */
 function generateGrid(){
+    const userDifficultyChoice = parseInt(userDifficulty.value);
+
+    // Genero un array di numeri
+    let arrayNumbers = generateNumbersArray(userDifficultyChoice);
+
     // Generiamo la griglia
     for(let i = 0; i < arrayNumbers.length ; i++){
         const item = generateSquare();
+
+        if(userDifficultyChoice === 49){
+            item.classList.add("hard");
+        } else if(userDifficultyChoice === 81){
+            item.classList.add("medium");
+        } else {
+            item.classList.add("easy");
+        }
+
         item.innerHTML = arrayNumbers[i];
         
         item.addEventListener("click", function(){
