@@ -6,8 +6,6 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 */
 
 const btnPlay = document.getElementById("btn-play");
-const gridSquare = document.querySelector(".grid");
-const userDifficulty = document.getElementById("difficulty");
 
 let count = 0;
 // Al click dell bottone generiamo la griglia
@@ -50,6 +48,10 @@ function generateSquare(){
  * Description: Funzione che genera la griglia di quadrati
  */
 function generateGrid(){
+    
+    const gridSquare = document.querySelector(".grid");
+    const userDifficulty = document.getElementById("difficulty");
+    
     if(count > 0 ){
         gridSquare.innerHTML = "";
         count = 0;
