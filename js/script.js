@@ -47,13 +47,14 @@ function generateSquare(){
  * Description: Funzione che genera la griglia di quadrati
  */
 function generateGrid(){
-    
+    const mainTitle = document.getElementById("main-title");
     const gridSquare = document.querySelector(".grid");
     const userDifficulty = document.getElementById("difficulty");
 
     //svuoto la griglia
     gridSquare.innerHTML = "";
     
+    // Difficoltà dell'utente
     const userDifficultyChoice = parseInt(userDifficulty.value);
 
     // Genero un array di numeri
@@ -75,9 +76,15 @@ function generateGrid(){
         
         item.addEventListener("click", function(){
             item.classList.add("active");
-            console.log(item.innerHTML);
+            console.log(item.textContent);
         })
 
         gridSquare.append(item);
+
+        // Aggiungo la classe hidden al titolo
+        mainTitle.classList.add("hidden");
+
+        // Rimuovo la classe hidden dalla griglia
+        gridSquare.classList.remove("hidden");
     }
 }
